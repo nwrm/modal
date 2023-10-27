@@ -61,16 +61,11 @@ function ModalDetail() {
         {timeSlots.map((timeSlot, roomname) => (
           <button
             key={timeSlot.value}
-            style={{
-              backgroundColor:
-                selectedButtons && selectedButtons.includes(timeSlot.value)
-                  ? "red"
-                  : "rgba(128, 128, 128, 0.3)",
-              color:
-                selectedButtons && selectedButtons.includes(timeSlot.value)
-                  ? "white"
-                  : "black",
-            }}
+            className={`button timeslot ${
+              selectedButtons && selectedButtons.includes(timeSlot.value)
+                ? "selected"
+                : ""
+            }`}
             onClick={() => handleButtonClick(timeSlot.value)}
           >
             {timeSlot.label}
