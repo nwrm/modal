@@ -1,21 +1,19 @@
-import { v4 as uuid } from "uuid";
-
 export const initialState = {
   items: [
     {
-      id: uuid(),
+      id: 1,
       name: "안녕",
       boolean: true,
       selectTimes: [],
     },
     {
-      id: uuid(),
+      id: 2,
       name: "표선",
       boolean: true,
       selectTimes: [],
     },
     {
-      id: uuid(),
+      id: 3,
       name: "Nabox",
       boolean: true,
       selectTimes: [],
