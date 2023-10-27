@@ -5,15 +5,14 @@ import {
   openModal,
   closeModal,
   selectButton,
-  updateSelectTimes, // 추가된 부분
-} from "../../../redux/modules/rooms"; // 추가된 부분
+  updateSelectTimes,
+} from "../../../redux/modules/rooms";
 
 function ModalDetail() {
   const dispatch = useDispatch();
   const modalOpen = useSelector((state) => state.rooms.modalOpen);
   const selectedButtons = useSelector((state) => state.rooms.selectedButtons);
   const initialState = useSelector((state) => state.rooms.items);
-
   const [roomname, roomnameSet] = useState("");
 
   const handleOpenModal = (item) => {
@@ -24,11 +23,12 @@ function ModalDetail() {
 
   const handleCloseModal = () => {
     dispatch(closeModal());
+    dispatch(selectButton([])); // (수정) 선택된 버튼을 빈 배열로 초기화
   };
 
   const handleButtonClick = (hour) => {
     dispatch(selectButton(hour));
-    console.log("Selected button value:", hour);
+    console.log("Selected button value:", hour, roomname);
   };
 
   const handleSelectedTimes = (roomname, updatedClosedTimes) => {
@@ -58,7 +58,7 @@ function ModalDetail() {
         selectedButtons={selectedButtons}
         updateSelectTimes={handleSelectedTimes} // 변경된 부분
       >
-        {timeSlots.map((timeSlot) => (
+        {timeSlots.map((timeSlot, roomname) => (
           <button
             key={timeSlot.value}
             style={{

@@ -84,11 +84,27 @@ const rooms = (state = initialState, action) => {
 };
 
 const handleSelectedTimes = (selectedButtons, button) => {
-  if (selectedButtons.includes(button)) {
-    return selectedButtons.filter((item) => item !== button);
+  if (selectedButtons.includes(selectedButtons, button)) {
+    // 이미 선택된 버튼인 경우, 해당 버튼을 선택 해제합니다.
+    return selectedButtons.filter(
+      (selectedButton) => selectedButton !== button
+    );
   } else if (selectedButtons.length < 2) {
+    // 선택된 버튼이 2개 미만인 경우, 새로운 버튼을 추가합니다.
     return [...selectedButtons, button];
+  } else {
+    // 선택된 버튼이 이미 2개인 경우, 기존 선택된 버튼들을 모두 제거하고 현재 버튼만 선택합니다.
+    return [button];
   }
-  return selectedButtons;
 };
+
+// const handleSelectedTimes = (selectedButtons, button) => {
+//   if (selectedButtons.includes(button)) {
+//     return selectedButtons.filter((item) => item !== button);
+//   } else if (selectedButtons.length < 2) {
+//     return [...selectedButtons, button];
+//   }
+//   return selectedButtons;
+// };
+
 export default rooms;
